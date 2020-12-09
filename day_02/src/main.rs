@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::Read;
 
-fn is_valid_password(rule_pass_pair: &str) -> bool {
+fn is_valid_password_count(rule_pass_pair: &str) -> bool {
     let rule_pass_split: Vec<&str> = rule_pass_pair.split(':').collect();
     assert_eq!(rule_pass_split.len(), 2);
 
@@ -28,7 +28,7 @@ fn main() {
 
     in_dat_fh.read_to_string(&mut in_dat).unwrap();
 
-    let valid_entries: usize = in_dat.lines().map(|l| if is_valid_password(l) { 1 } else { 0 }).sum();
+    let valid_entries: usize = in_dat.lines().map(|l| if is_valid_password_count(l) { 1 } else { 0 }).sum();
     println!("input had {} valid passwords", valid_entries);
 }
 
@@ -38,8 +38,8 @@ mod test {
 
     #[test]
     fn test_valid_password() {
-        assert!(is_valid_password(&"1-3 a: abcde"));
-        assert!(!is_valid_password(&"1-3 b: cdefg"));
-        assert!(is_valid_password(&"2-9 c: ccccccccc"));
+        assert!(is_valid_password_count(&"1-3 a: abcde"));
+        assert!(!is_valid_password_count(&"1-3 b: cdefg"));
+        assert!(is_valid_password_count(&"2-9 c: ccccccccc"));
     }
 }
