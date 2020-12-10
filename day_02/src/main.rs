@@ -41,7 +41,7 @@ fn is_valid_password_positions(rule_pass_pair: &str) -> bool {
 
 fn main() {
     let mut in_dat_fh = File::open("./data/input1.txt").unwrap();
-    let mut in_dat =String::new();
+    let mut in_dat = String::new();
 
     in_dat_fh.read_to_string(&mut in_dat).unwrap();
 
